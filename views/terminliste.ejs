@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Terminkalender</title>
+    </head>
+    <body>
+        <table>
+            <% for(var i = 0; i < termine.length; i++) { %>
+            <tr>
+
+                <!--Anzeigen aller Termine-->
+                <td><%= termine[i].id%></td>
+                <td><%= termine[i].benutzer_name%></td>
+                <td><%= termine[i].datum%></td>
+                <td><%= termine[i].eintrag%></td>
+                <td>
+
+                    <!--Termin löschen
+                    <form action="/delete/<%=termine[i].id%>" method="POST">
+                    <button type="submit">Löschen</button>
+                    </form>
+                </td>
+
+                <td>
+
+                    <!--Termin bearbeiten
+                    <form action="/update/<%=termine[i].id%>" method="POST">
+                    <button type="submit">Bearbeiten</button>
+                    </form>
+                </td>-->
+            </tr>
+            <% } %>
+        </table>
+        <br>
+
+        <!--Verlinkung um einen Termin hinzuzufügen-->
+        <a href="/create">Neuen Termin hinzufügen</a>
+    </body>
+</html>

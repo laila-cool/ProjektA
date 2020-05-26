@@ -1,0 +1,15 @@
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Termineintrag bearbeiten</title>
+    </head>
+    <body>
+        <form action="/onupdate/<%=id%>" method="POST">
+            Termin:<br>
+            <input type="text" name="terminname" value="<%=name%>"><br>
+            <input type="text" name="termindatum" value="<%=datum%>"><br>
+            <button type="submit">Speichern</button>
+        </form>
+    </body>
+</html>
