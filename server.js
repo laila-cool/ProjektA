@@ -20,26 +20,67 @@ app.listen(3000, function(){
     console.log("listening on 3000");
 });
 
-app.get("/termine", function(req,res){
+app.get("/datum", function(req,res){
     db.all(`
-    SELECT 
-        benutzer.benutzername AS benutzer_name,
-        datum.name AS datum,
-        termine.eintrag AS eintrag    
-    FROM
-        datum, termine, benutzer
-    WHERE
-        benutzer.id = termine.benutzer_id
-    AND 
-        datum.id = termine.datum
+    
+    SELECT * FROM datum
     `,
     function(err,rows) {
         console.log(err);
         console.log(rows);
-        res.render("terminliste", {"terminliste":rows});
+        res.render("terminliste", {"datum":rows});
     }
     );
 });
+
+//Fügt einen Eintrag zum Kalender hinzu
+app.get("/create",function(req,res){
+    res.sendFile(__dirname + "/views/create.html");
+});
+
+//POST-Request oncreate fügt Termin zum Kalender hinzu
+app.post("/oncreate", function(req,res){
+    const param_name = req.body.terminname;
+    db.run(`
+    INSERT INTO datum(eintrag) VALUES ("${param_name}")`,
+    function(err) {
+        res.redirekt("/datum");
+    }
+
+    );
+});
+
+//Löschen eines Termines
+app.post("/delete/:id",function(req,res){
+    db.run(
+        `DELETE eintrag FROM datum WHERE id = ${req.params.id}`,
+        function(err){
+            res.redirect("/datum");
+        }
+    );
+});
+
+//kjdk
+app.post("/update/:id",function(req,res){
+    db.all(
+        `SELECT * FROM datum WHERE id = ${req.params.id}`,
+        function(err,rows){
+            res.render("update",rows[0]);
+        }
+    );
+});
+
+app.post("/onupdate/:id", function(req,res){
+    const param_name = req.body.terminname;
+    const param_id = req.params.id;
+    db.run(
+        `UPDATE datum SET eintrag = "${param_name}" WHERE id = ${param_id}`,
+        function(err){
+            res.redirect("/datum");
+        }
+    );
+});
+
 
 
 

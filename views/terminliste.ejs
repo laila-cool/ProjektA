@@ -4,30 +4,29 @@
         <title>Terminkalender</title>
     </head>
     <body>
-        <table>
-            <% for(var i = 0; i < termine.length; i++) { %>
+        <table border="1">
+            <% for(var i = 0; i < datum.length; i++) { %>
             <tr>
 
                 <!--Anzeigen aller Termine-->
-                <td><%= termine[i].id%></td>
-                <td><%= termine[i].benutzer_name%></td>
-                <td><%= termine[i].datum%></td>
-                <td><%= termine[i].eintrag%></td>
+                <td><%= datum[i].id%></td>
+                <td><%= datum[i].name%></td>
+                <td><%= datum[i].eintrag%></td>
                 <td>
 
-                    <!--Termin löschen
-                    <form action="/delete/<%=termine[i].id%>" method="POST">
+                    <!--Termin löschen-->
+                    <form action="/delete/<%=datum[i].id%>" method="POST">
                     <button type="submit">Löschen</button>
                     </form>
                 </td>
 
                 <td>
 
-                    <!--Termin bearbeiten
-                    <form action="/update/<%=termine[i].id%>" method="POST">
+                    <!--Termin bearbeiten-->
+                    <form action="/update/<%=datum[i].id%>" method="POST">
                     <button type="submit">Bearbeiten</button>
                     </form>
-                </td>-->
+                </td>
             </tr>
             <% } %>
         </table>
