@@ -70,6 +70,20 @@ app.post("/update/:id",function(req,res){
     );
 });
 
+//Get-Request für login
+app.get("/login", function(req,res){
+    res.sendFile(__dirname + "/views/login.html");
+});
+
+//Post für Abfrage der richtigen Login-Daten
+app.post("/login", function(req,res){
+    const param_benutzer = req.body.username;
+    const param_passwort = req.body.password;
+    if( param_benutzer == 'ilaf' && param_passwort == 'hallo'){
+         res.redirect("/datum");
+    }
+});
+
 app.post("/onupdate/:id", function(req,res){
     const param_name = req.body.terminname;
     const param_id = req.params.id;

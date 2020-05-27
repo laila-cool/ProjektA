@@ -2,14 +2,20 @@
 <html>
     <head>
         <title>Anmeldung</title>
+        <meta charset="UTF-8">
+
+        <!--Einbinden der Stylesheet CSS-->
+        <link rel="stylesheet" href="/css/style.css"/>
     </head>
     <body>
-        <form action="/terminliste" method="POST">
+        <form method="POST" action="/login" >
         <h1>Na, wer bist du denn?</h1>
-        <p>Benutzername</p>
-        <input type="text" name="benutzername"><br>
-        <p>Passwort</p>
-        <input type="password" name="passwort"><br>
+        
+        <label for="username">Benutzername:</label><br>
+      <input type="text" name="username" id="username"><br>
+      <label for="password">Passwort:</label><br>
+      <input type="password" name="password" id="password"><br>
+        <p><button type="submit">Bestätigen</button></p>
         </form>
 
     </body>
